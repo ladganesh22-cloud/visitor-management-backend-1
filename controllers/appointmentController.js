@@ -144,8 +144,8 @@ exports.approveAppointment = async (req, res) => {
     console.log(pdf, 'pdfff');
     const qrBase64 = qrCodeDataURL.split(',')[1];
     await sendEmail({
-      // to: appointment.visitorId.email,
-      to: 'ladganesh22@gmail.com',
+      to: appointment.visitorId.email,
+      // to: 'ladganesh22@gmail.com',
       subject: "Your GBLPASS Visitor Access Has Been Approved",
       html: `
     <p>Hello <b>${appointment.visitorId.name}</b>,</p>
@@ -229,8 +229,8 @@ exports.rejectAppointment = async (req, res) => {
 
     // EMAIL
     await sendEmail({
-      // to: appointment.visitorId.email,
-      to: 'ladganesh22@gmail.com',
+      to: appointment.visitorId.email,
+      // to: 'ladganesh22@gmail.com',
       subject: "Appointment Rejected",
       html: `
       <p>Hello <b>${appointment.visitorId.name}</b>,</p>
