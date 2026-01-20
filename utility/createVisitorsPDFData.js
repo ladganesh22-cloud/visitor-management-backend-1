@@ -27,20 +27,15 @@ const createVisitorsPDFData = async (visitorId) => {
     // get -visitor id from visitor Model to find visitor id base on triggering data
     const visitor = await visitorModel.findById(visitorId);
     // if we get visitor data then load visitor idd and visitor name for generate QR code
-    const qrCodeDataURL = await generateQRCode(`Visitor ID: ${visitor._id}\n Name: ${visitor.name}`);
+    const visitorrCodeDataURL = await generateQRCode(`Visitor ID: ${visitor._id}\n Name: ${visitor.name}`);
     // change file name of the pdf
     const visitorsfilename = `GBLVisitor_${visitor._id}.pdf`;
     // initialising the document definition to render html content like header, main content and image of the visitors
     const visitorsDoccuDefinition = {
       content: [
         { text: 'Visitor Pass', style: 'header' }, { text: `Name: ${visitor.name}`, style: 'subheader' }, { text: `Email: ${visitor.email}` }, { text: `Phone: ${visitor.phone}` }, { text: `Address: ${visitor.address}` },
-        {
-          image: visitor.photo,
-          width: 120,
-          alignment: "left",
-          margin: [0, 10, 0, 10],
-        },
-        { image: qrCodeDataURL, width: 150, margin: [0, 20, 0, 0] }
+        { image: visitor.photo, width: 120, alignment: "left", margin: [0, 10, 0, 10] },
+        { image: visitorrCodeDataURL, width: 150, margin: [0, 20, 0, 0] }
       ],
     };
     console.log(visitorsDoccuDefinition, 'visitorsDoccuDefinition');
