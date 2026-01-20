@@ -19,15 +19,15 @@
 const axios = require("axios");
 
 const sendSMS = async (mobile, message) => {
-  console.log(mobile, 'mobiille');
-  console.log(message, 'message');
+  console.log(mobile, 'mobiillewwwwwwwww');
+  console.log(message, 'messageeeeeeeeeee');
   try {
     const response = await axios.post(
       "https://www.fast2sms.com/dev/bulkV2",
       {
         route: "q",
         message,
-        numbers: '8828457968'
+        numbers: mobile
       },
       {
         headers: {
