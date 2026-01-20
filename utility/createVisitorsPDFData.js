@@ -23,14 +23,12 @@ const printer = new pdfPrinter(fonts);
 
 const createVisitorsPDFData = async (visitorId) => {
   try {
-
     // get -visitor id from visitor Model to find visitor id base on triggering data
     const visitor = await visitorModel.findById(visitorId);
     // if we get visitor data then load visitor idd and visitor name for generate QR code
     const visitorrCodeDataURL = await generateQRCode(`Visitor ID: ${visitor._id}\n Name: ${visitor.name}`);
     // change file name of the pdf
     const visitorsfilename = `GBLVisitor_${visitor._id}.pdf`;
-
     // const visitorsDoccuDefinition = {
     //   content: [
     //     { text: 'Visitor Pass', style: 'header' },  { text: `Phone: ${visitor.phone}` }, { text: `Address: ${visitor.address}` },
