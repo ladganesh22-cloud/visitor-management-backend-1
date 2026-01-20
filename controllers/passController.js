@@ -2,7 +2,7 @@ const passModle = require('../models/pass-model');
 
 // create issue pass
 const generateQRCode = require('../utility/generateQRCode');
-const generateVisitorPDF = require('../utility/generateVisitorPDF');
+const createVisitorsPDFData = require('../utility/createVisitorsPDFData');
 const { Jimp } = require("jimp");
 const QrCode = require("qrcode-reader");
 
@@ -98,7 +98,7 @@ exports.issuePass = async (req, res) => {
 
     const issuedBy = req.user.id;
 
-    const { filePath, url } = await generateVisitorPDF(visitorId);
+    const { filePath, url } = await createVisitorsPDFData(visitorId);
 
     const newPass = new passModle({ passId, visitorId, appointmentId, pdfPath, validFrom, validTo, issuedBy });
 

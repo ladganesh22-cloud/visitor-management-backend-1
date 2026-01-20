@@ -1,7 +1,7 @@
 const appointmentModel = require('../models/appointment-model');
 const sendEmail = require('../utility/sendEmail');
 const sendSMS = require('../utility/sendSMS');
-const generateVisitorPDF = require('../utility/generateVisitorPDF');
+const createVisitorsPDFData = require('../utility/createVisitorsPDFData');
 const passModel = require("../models/pass-model");
 const jwt = require('jsonwebtoken')
 const userModel = require('../models/user-model');
@@ -97,8 +97,8 @@ exports.createAppointment = async (req, res) => {
 
 exports.approveAppointment = async (req, res) => {
   try {
-    // console.log(req);
-    // console.log(res);
+    console.log(req);
+    console.log(res);
     const { id } = req.params;
     const { authorization } = req.headers
     const token = authorization.split(' ')[1]
@@ -126,7 +126,7 @@ exports.approveAppointment = async (req, res) => {
     console.log(appointment.appointmentDate, 'appidate');
     // EMAIL
     const date_ac = appointment.appointmentDate
-    const pdf = await generateVisitorPDF(appointment.visitorId._id);
+    const pdf = await createVisitorsPDFData(appointment.visitorId._id);
     const qrCodeDataURL = await generateQRCode(passId);
     const newPass = new passModel({
       passId,
@@ -184,8 +184,8 @@ exports.approveAppointment = async (req, res) => {
     </p>`,
       attachments: [
         {
-          filename: pdf.fileName,
-          path: pdf.pdfFilePath,
+          filename: pdf.visitorsfilename,
+          path: pdf.visitorsPdfFilePath,
           contentType: "application/pdf"
         },
         {
@@ -202,7 +202,7 @@ exports.approveAppointment = async (req, res) => {
     await sendSMS(
       appointment.visitorId.phone,
       // '8828457968',
-      `Hello ${appointment.visitorId.name}, your appointment has been APPROVED by the host.`
+      `Welcome!! Hello ${appointment.visitorId.name}, your appointment has been APPROVED by the host.`
     );
 
     res.json({ success: true, message: "Appointment approved" });
@@ -253,7 +253,7 @@ exports.rejectAppointment = async (req, res) => {
     const smsRes = await sendSMS(
       appointment.visitorId.phone,
       // '8828457968',
-      `Hello ${appointment.visitorId.name}, your appointment has been REJECTED by the host.`
+      `Welcome!! Hello ${appointment.visitorId.name}, your appointment has been REJECTED by the host.`
     );
     console.log(smsRes, "smsRes")
     res.json({ success: true, message: "Appointment rejected" });
