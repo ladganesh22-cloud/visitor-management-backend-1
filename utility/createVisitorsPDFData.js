@@ -30,7 +30,7 @@ const createVisitorsPDFData = async (visitorId) => {
     const visitorrCodeDataURL = await generateQRCode(`Visitor ID: ${visitor._id}\n Name: ${visitor.name}`);
     // change file name of the pdf
     const visitorsfilename = `GBLVisitor_${visitor._id}.pdf`;
-    // initialising the document definition to render html content like header, main content and image of the visitors
+
     // const visitorsDoccuDefinition = {
     //   content: [
     //     { text: 'Visitor Pass', style: 'header' },  { text: `Phone: ${visitor.phone}` }, { text: `Address: ${visitor.address}` },
@@ -39,6 +39,7 @@ const createVisitorsPDFData = async (visitorId) => {
     //   ],
     // };
     //declare all visitors details like namee email, phone numnber, address and photo
+    // initialising the document definition to render html content like header, main content and image of the visitors
     const visitorContentData = [
       { text: 'Visitor Pass', style: 'header' },
       { text: `Name: ${visitor.name}`, style: 'subheader' },
