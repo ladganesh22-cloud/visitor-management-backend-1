@@ -31,12 +31,26 @@ const createVisitorsPDFData = async (visitorId) => {
     // change file name of the pdf
     const visitorsfilename = `GBLVisitor_${visitor._id}.pdf`;
     // initialising the document definition to render html content like header, main content and image of the visitors
+    // const visitorsDoccuDefinition = {
+    //   content: [
+    //     { text: 'Visitor Pass', style: 'header' },  { text: `Phone: ${visitor.phone}` }, { text: `Address: ${visitor.address}` },
+    //     { image: visitor.photo, width: 120, alignment: "left", margin: [0, 10, 0, 10] },
+    //     { image: visitorrCodeDataURL, width: 150, margin: [0, 20, 0, 0] }
+    //   ],
+    // };
+    //declare all visitors details like namee email, phone numnber, address and photo
+    const visitorContentData = [
+      { text: 'Visitor Pass', style: 'header' },
+      { text: `Name: ${visitor.name}`, style: 'subheader' },
+      { text: `Email: ${visitor.email}` },
+      { text: `Phone: ${visitor.phone}` },
+      { text: `Address: ${visitor.address}` },
+      { image: visitor.photo, width: 120, alignment: 'left', margin: [0, 10, 0, 10] },
+      { image: visitorrCodeDataURL, width: 150, margin: [0, 20, 0, 0] },
+    ];
+
     const visitorsDoccuDefinition = {
-      content: [
-        { text: 'Visitor Pass', style: 'header' }, { text: `Name: ${visitor.name}`, style: 'subheader' }, { text: `Email: ${visitor.email}` }, { text: `Phone: ${visitor.phone}` }, { text: `Address: ${visitor.address}` },
-        { image: visitor.photo, width: 120, alignment: "left", margin: [0, 10, 0, 10] },
-        { image: visitorrCodeDataURL, width: 150, margin: [0, 20, 0, 0] }
-      ],
+      content: visitorContentData,
     };
     console.log(visitorsDoccuDefinition, 'visitorsDoccuDefinition');
     // to initializes the pdfDoc to create printer document definition
