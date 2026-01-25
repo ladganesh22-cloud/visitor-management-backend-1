@@ -1,8 +1,9 @@
 const express = require('express');
 
-const { getAllVisitors, getVisitorById, createVisitor, updateVisitor, deleteVisitor } = require('../controllers/visitorController');
+const { getAllGBLVisitors, getGBLVisitorById, createGBLVisitor, updateGBLVisitor, deleteGBLVisitor } = require('../controllers/gblvisitorsController');
 
-const requireAuth = require('../middlewares/registerAuth')
+const requireAuth = require('../middlewares/registerAuth');
+
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.use(requireAuth)
  * Description: Get all visitors
  * Response: List of visitors or error
  */
-router.get('/', getAllVisitors);
+router.get('/', getAllGBLVisitors);
 
 /**
  * Method: GET
@@ -23,7 +24,7 @@ router.get('/', getAllVisitors);
  * Description: Get visitor by ID
  * Response: Visitor data or error
  */
-router.get('/:id', getVisitorById);
+router.get('/:id', getGBLVisitorById);
 
 /**
  * Method: POST
@@ -32,7 +33,7 @@ router.get('/:id', getVisitorById);
  * Request Body: { name, email, phone, address, photo, idProof, createdBy }
  * Response: Created visitor data or error
  */
-router.post('/', createVisitor);
+router.post('/', createGBLVisitor);
 
 /**
  * Method: PUT
@@ -41,7 +42,7 @@ router.post('/', createVisitor);
  * Request Body: Fields to update
  * Response: Updated visitor data or error
  */
-router.put('/:id', updateVisitor);
+router.put('/:id', updateGBLVisitor);
 
 /**
  * Method: DELETE
@@ -49,7 +50,7 @@ router.put('/:id', updateVisitor);
  * Description: Delete visitor by ID
  * Response: Success message or error
  */
-router.delete('/:id', deleteVisitor);
+router.delete('/:id', deleteGBLVisitor);
 
 
 module.exports = router;

@@ -1,8 +1,10 @@
 const express = require('express');
 
-const { getAllUsers, getUserById } = require('../controllers/userController');
 
-const requireAuth = require('../middlewares/registerAuth')
+const { getAllPeoples, getPeopleById } = require('../controllers/pepoleController');
+
+const requireAuth = require('../middlewares/registerAuth');
+
 
 const router = express.Router();
 
@@ -15,7 +17,7 @@ router.use(requireAuth)
  * Description: Get all users
  * Response: List of users or error
  */
-router.get('/', getAllUsers);
+router.get('/', getAllPeoples);
 
 /**
  * Method: GET
@@ -24,6 +26,6 @@ router.get('/', getAllUsers);
  * Access: Public
  * Parameters: id
  */
-router.get('/:id', getUserById);
+router.get('/:id', getPeopleById);
 
 module.exports = router;
