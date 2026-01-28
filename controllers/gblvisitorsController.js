@@ -83,9 +83,9 @@ exports.updateGBLVisitor = async (req, res) => {
     const updatedGBLVisitor = await visitorModel.findByIdAndUpdate(id, updates, { new: true });
     console.log(updatedGBLVisitor);
     if (!updatedGBLVisitor) {
-      return res.status(404).json({ error: 'Visitor not found' });
+      return res.status(404).json({ error: 'GBL Visitor not found!!!!!' });
     }
-
+    // return updated GBL visitors
     res.status(201).json(updatedGBLVisitor);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -93,17 +93,20 @@ exports.updateGBLVisitor = async (req, res) => {
 };
 
 // delete visitor
-exports.deleteVisitor = async (req, res) => {
+exports.deleteGBLVisitor = async (req, res) => {
   const { id } = req.params;
+  console.log(id, 'idddeleteeeee');
   try {
+    // find id and delete data from monogdb
 
     const deletedVisitor = await visitorModel.findByIdAndDelete(id);
 
     if (!deletedVisitor) {
-      return res.status(404).json({ error: 'Visitor not found' });
+      return res.status(404).json({ error: 'GBL Visitor not found!!!!!' });
     }
 
-    res.status(201).json({ message: 'Visitor deleted successfully' });
+    // return json with message
+    res.status(201).json({ message: 'GBL Visitor deleted successfully' });
   } catch (error) {
 
     res.status(400).json({ error: error.message });
