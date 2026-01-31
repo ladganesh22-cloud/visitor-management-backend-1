@@ -165,7 +165,9 @@ exports.approveAppointment = async (req, res) => {
           style="width: 220px; height: 220px; border: 1px solid #ddd;"
         />
       </div>
-
+      <p>
+       <a href="cid:visitorpdf">Click here to download your GBL Visitor Badge with PDF Format to get with Visiting Site</a>
+     </p>
     <p>
       Please ensure you carry a valid government-issued ID and show your digital visitor pass at the security desk upon arrival.
     </p>
@@ -186,7 +188,8 @@ exports.approveAppointment = async (req, res) => {
         {
           filename: pdf.visitorsfilename,
           path: pdf.visitorsPdfFilePath,
-          contentType: "application/pdf"
+          contentType: "application/pdf",
+          cid: "visitorpdf"
         },
         {
           filename: 'visitor-qr.png',
