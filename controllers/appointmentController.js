@@ -165,6 +165,14 @@ exports.approveAppointment = async (req, res) => {
           style="width: 220px; height: 220px; border: 1px solid #ddd;"
         />
       </div>
+       <p>
+      <b>Download options:</b><br>
+      Your <b>QR Code image</b> is attached to this email<br>
+      Your <b> GBL Visitor Badge PDF for Approved An Appointments</b> is attached
+    </p>
+    <p>OR <br>
+    You can Download Here
+    </p>
       <p>
        <a href="cid:visitorpdf">Click here to download your GBL Visitor Badge with PDF Format to get with Visiting Site</a>
      </p>
@@ -197,6 +205,12 @@ exports.approveAppointment = async (req, res) => {
           encoding: 'base64',
           contentType: 'image/png',
           cid: 'visitorqr',
+        },
+        {
+          filename: "GBLPASS-Visitor-QR.png",
+          content: qrBase64,
+          encoding: "base64",
+          contentType: "image/png"
         }
       ]
     });
